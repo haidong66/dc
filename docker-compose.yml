@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  flask_app:
+    build: ./flask_app
+    container_name: flask_app
+    image: haidong66/dc_flask_app:latest
+    expose:
+      - "8000"
+
+  nginx_proxy:
+    build:
+      context: ./nginx
+      # args:
+      #   ENV: dev  # Change this to 'dev' for the development environment
+      # dockerfile: Dockerfile
+      args:
+        ENV: prod
+      dockerfile: prod/Dockerfile
+    container_name: nginx_proxy
+    image: haidong66/dc_nginx_proxy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - flask_app
