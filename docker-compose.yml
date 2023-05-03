@@ -13,12 +13,12 @@ services:
   nginx_proxy:
     build:
       context: ./nginx
-      # args:
-      #   ENV: dev  # Change this to 'dev' for the development environment
-      # dockerfile: Dockerfile
       args:
-        ENV: prod
-      dockerfile: prod/Dockerfile
+        ENV: dev  # Change this to 'dev' for the development environment
+      dockerfile: Dockerfile
+      # args:
+      #   ENV: prod
+      # dockerfile: prod/Dockerfile
     container_name: nginx_proxy
     image: haidong66/dc_nginx_proxy:latest
     ports:
